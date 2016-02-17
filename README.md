@@ -1,4 +1,4 @@
-# docker-aria2
+# docker-aria2 [![Docker Pulls](https://img.shields.io/docker/pulls/mashape/kong.svg)](https://hub.docker.com/r/hobbsau/tvheadend/)
 
 Run aria2c from a docker container
 
