@@ -1,8 +1,9 @@
 FROM alpine:edge
 MAINTAINER Adrian Hobbs <adrianhobbs@gmail.com>
+ENV PACKAGE "aria2"
 
 # Install package using --no-cache to update index and remove unwanted files
-RUN 	apk --no-cache add aria2 && \
+RUN 	apk add --no-cache $PACKAGE && \
 	# Add a user to run as non root
 	adduser -D -g '' aria2
 
