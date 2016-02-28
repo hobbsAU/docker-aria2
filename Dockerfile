@@ -21,6 +21,11 @@ RUN	apt-get update && apt-get install -y build-essential git pkg-config libssl-d
 	apt-get update && apt-get install -y libxml2 libsqlite3-0 libssh2-1 libc-ares2 && \
 	apt-get autoremove --purge -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Add a user to run as non root
+RUN 	adduser --disabled-password --gecos '' aria2
+
+USER flexget
+ENV HOME /home/flexget
 EXPOSE 6800
 
 CMD ["/usr/local/bin/aria2c","--conf-path=/config/aria2.conf"]
