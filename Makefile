@@ -25,6 +25,7 @@ run:
 		docker pull $(CONTAINER_REPO); \
 		docker run -d \
  		--restart=always \
+ 		-p 6800:6800/tcp \
  		-v $(CONFIG_BIND)$(CONFIG_VOL) \
  		-v $(DATA_BIND_1)$(DATA_VOL_1) \
  		-v $(DATA_BIND_2)$(DATA_VOL_2) \
