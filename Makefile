@@ -42,7 +42,6 @@ stop:
 		echo "Nothing to stop as container $(CONTAINER_RUN) isn't running!"; \
 	else \
 	docker stop $(CONTAINER_RUN); \
-	docker rm $(CONTAINER_RUN); \
 	fi
 
 clean: stop
