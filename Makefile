@@ -20,7 +20,7 @@ build:
 
 
 run: 
-	@if [ -z "`docker ps -q -f name=$(CONTAINER_RUN)`" ]; \
+	@if [ -z "`docker ps -a -q -f name=$(CONTAINER_RUN)`" ]; \
 	then \
 		docker pull $(CONTAINER_REPO); \
 		docker run -d \
