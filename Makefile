@@ -1,20 +1,22 @@
 #Makefile for Docker container control
 
-#include additional variables
+# Include additional variables
 include /srv/aria2/a.mk
 
-# define docker container
+# Define container repo and runtime name
 CONTAINER_REPO = hobbsau/aria2
 CONTAINER_RUN = aria2-service
 
-# define the exportable volumes for the data container
+# Define the exportable volumes for the container
 CONFIG_VOL = /home/aria2
 
-# This should point to the host directory containing the config. The host directory must be owned by UID:GID 1000:1000. The format is /host/directory:
+# This should point to the Docker host directory containing the config. The host directory must be owned by UID:GID 1000:1000. The format is '/host/directory:'
 CONFIG_BIND = /srv/aria2:
 
+# URL for triggering a rebuild
 TRIGGER_URL = https://registry.hub.docker.com/u/hobbsau/aria2/trigger/26f5ecc6-8887-4f45-ba8a-c7d0fb9b27c1/
 
+# Trigger a remote initiated rebuild
 build:
 	echo "Rebuilding container..."; \
 	@curl --data build=true -X POST $(TRIGGER_URL) 
@@ -69,4 +71,5 @@ clean: stop
 		docker rm $(CONTAINER_RUN); \
 	fi
 
-upgrade: clean build run
+# Upgrade the container - may not work if rebuild takes too long
+upgrade: build clean run
