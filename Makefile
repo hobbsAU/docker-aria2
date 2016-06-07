@@ -18,7 +18,7 @@ TRIGGER_URL = https://registry.hub.docker.com/u/hobbsau/aria2/trigger/26f5ecc6-8
 
 # Trigger a remote initiated rebuild
 build:
-	echo "Rebuilding container..."; \
+	echo "Rebuilding repository $(CONTAINER_REPO) ..."; \
 	@curl --data build=true -X POST $(TRIGGER_URL) 
 
 # Intantiate service continer and start it
