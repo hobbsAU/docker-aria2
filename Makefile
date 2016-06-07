@@ -35,7 +35,7 @@ run:
  		$(CONTAINER_REPO); \
 	else \
 		echo "$(CONTAINER_RUN) is already running or a stopped container by the same name exists!"; \
-		echo "Please try \'make clean\' and then \'make run\'"; \
+		echo "Please try 'make clean' and then 'make run'"; \
 	fi
 
 # Start the service container. 
