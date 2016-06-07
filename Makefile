@@ -23,6 +23,7 @@ build:
 run: 
 	@if [ -z "`docker ps -a -q -f name=$(CONTAINER_RUN)`" ]; \
 	then \
+		echo "Checking for latest container..."; \
 		docker pull $(CONTAINER_REPO); \
 		echo "Creating and starting container..."; \
 		docker run -d \
@@ -45,14 +46,14 @@ start:
 		echo "Starting container..."; \
 		docker start $(CONTAINER_RUN); \
 	else \
-		echo "Container $(CONTAINER_RUN) doesn't exist or is not in a stopped state!"; \
+		echo "Container $(CONTAINER_RUN) doesn't exist or is already running!"; \
 	fi
 
 # Stop the service container. 
 stop:
 	@if [ -z "`docker ps -q -f name=$(CONTAINER_RUN)`" ]; \
         then \
-		echo "Nothing to stop as container $(CONTAINER_RUN) isn't running!"; \
+		echo "Nothing to stop as container $(CONTAINER_RUN) is not running!"; \
 	else \
 		echo "Stopping container..."; \
 		docker stop $(CONTAINER_RUN); \
@@ -62,7 +63,7 @@ stop:
 clean: stop
 	@if [ -z "`docker ps -a -q -f name=$(CONTAINER_RUN)`" ]; \
         then \
-		echo "Nothing to remove as container $(CONTAINER_RUN) doesn't exist!"; \
+		echo "Nothing to remove as container $(CONTAINER_RUN) does not exist!"; \
 	else \
 		echo "Removing container..."; \
 		docker rm $(CONTAINER_RUN); \
